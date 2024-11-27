@@ -74,6 +74,23 @@
             }
         });
 
+        // Carregar dados salvos do localStorage
+        window.onload = function() {
+            const savedDescription = localStorage.getItem('description');
+            const savedPageTitle = localStorage.getItem('pageTitle');
+            const savedMetadescription = localStorage.getItem('metadescription');
+
+            if (savedDescription) {
+                quill.root.innerHTML = savedDescription;
+            }
+            if (savedPageTitle) {
+                document.getElementById('pageTitle').value = savedPageTitle;
+            }
+            if (savedMetadescription) {
+                document.getElementById('metadescription').value = savedMetadescription;
+            }
+        };
+
         function cleanHTML(input) {
             return input.replace(/<p>/g, '').replace(/<\/p>/g, '<br>').replace(/<br><br>/g, '<br>');
         }
@@ -83,6 +100,11 @@
             const description = cleanHTML(rawDescription);
             const pageTitle = document.getElementById('pageTitle').value;
             const metadescription = document.getElementById('metadescription').value;
+
+            // Salvar dados no localStorage
+            localStorage.setItem('description', description);
+            localStorage.setItem('pageTitle', pageTitle);
+            localStorage.setItem('metadescription', metadescription);
 
             fetch('/update-product', {
                 method: 'POST',
