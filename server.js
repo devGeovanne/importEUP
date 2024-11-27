@@ -130,7 +130,7 @@ app.post('/update-alt-text', async (req, res) => {
         // Atualizar o texto alternativo de cada imagem
         const updatedImages = product.images.map((image, index) => ({
             id: image.id,
-            alt: `${title} - EUPHORE, Foto ${index + 1}`
+            alt: `${title} - EUPHORE, Foto ${index + 1}` // Alteração aqui
         }));
 
         await axios.put(`https://${SHOPIFY_STORE_DOMAIN}/admin/api/2024-10/products/${product.id}.json`, {
@@ -186,7 +186,7 @@ app.post('/generate-tags', async (req, res) => {
                         "Funcionalidade: Bolsa para o Dia a Dia",
                         "Tamanho: Bolsa Grande",
                         "Tamanho: Bolsa Compacta",
-                        "Marca: EUPHORE"
+                        "Marca: EUPHORE" // Alteração aqui
                     ]
                 }
             })
